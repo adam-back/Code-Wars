@@ -1,0 +1,25 @@
+{
+  "name": "Code-Wars",
+  "version": "1.0.0",
+  "description": "TDD for Code Wars katas.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/adam-back/Code-Wars.git"
+  },
+  "keywords": [
+    "code",
+    "wars",
+    "testing",
+    "mocha"
+  ],
+  "author": "Adam Back",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/adam-back/Code-Wars/issues"
+  },
+  "homepage": "https://github.com/adam-back/Code-Wars"
+}
