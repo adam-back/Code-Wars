@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/adam-back/Code-Wars",
   "dependencies": {
+    "chai": "^1.10.0",
     "mocha": "^2.0.1"
   }
 }
