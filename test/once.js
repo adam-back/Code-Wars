@@ -2,8 +2,19 @@ var expect = require('chai').expect;
 
 /* Code to be tested */
 
-var once = function() {
- return undefined;
+var once = function(func) {
+  if(typeof func === 'function') {
+    Object.create()
+
+
+
+
+
+
+  } else {
+    return null;
+  }
+
 };
 
 
