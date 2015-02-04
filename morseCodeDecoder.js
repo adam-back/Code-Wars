@@ -1,9 +1,13 @@
 var decodeMorse = function(morseCode) {
   // remove white spaces at the start of the string
-  morseCode = morseCode.replace(/\s+/, '');
+  if(morseCode.search(/\s+/) === 0) {
+    morseCode = morseCode.replace(/\s+/, '');
+  }
+  
   // remove white space at the end of the string
   morseCode = morseCode.replace(/\s+$/, '');
 
+  console.log('white-spaceless morse: ', morseCode );
   var message = '';
   var words = [];
 
