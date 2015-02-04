@@ -1,7 +1,8 @@
 var expect = require('chai').expect;
+var decodeMorse = require('../morseCodeDecoder').decodeMorse;
 
-describe('Truth', function() {
-  it('should be true', function() {
-    expect(true).to.be.a('boolean');
+describe('Morse code', function() {
+  it('should be a function', function() {
+    expect(decodeMorse).to.be.a('function');
   });
 });
