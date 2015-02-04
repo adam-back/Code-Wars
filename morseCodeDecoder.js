@@ -1,4 +1,23 @@
 var decodeMorse = function(morseCode) {
+  // remove white spaces at the start of the string
+  // remove white space at the end of the string
+  var message = '';
+
+  // separate input by words (three spaces)
+
+  // loop through words
+    // separate word into characters (one space)
+    
+    // loop through characters
+      // translate character to english, add to message
+
+    // add space after word 
+
+
+  // remove last space
+
+  // return english string
+  return message;
 };
 
 var MORSE_CODE = { '-.-.--': '!',
