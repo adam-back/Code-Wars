@@ -21,7 +21,7 @@ describe.only('mineLocation', function() {
     location = mineLocation([ [1, 0], 
                               [0, 0] ]); 
 
-    expect(location).to.equal([0,0]);
+    expect(location.toString()).to.equal([0,0].toString());
   });
 
   it('should return the location for a mine in a 3x3 field', function() {
@@ -29,7 +29,7 @@ describe.only('mineLocation', function() {
                               [0, 1, 0], 
                               [0, 0, 0] ]); 
 
-    expect(location).to.equal([1,1]);
+    expect(location.toString()).to.equal([1,1].toString());
   });
 
   it('should return the location for a mine in a 4x4 field', function() {
@@ -38,7 +38,7 @@ describe.only('mineLocation', function() {
                               [0, 1, 0, 0], 
                               [0, 0, 0, 0] ]); 
 
-    expect(location).to.equal([2,1]);
+    expect(location.toString()).to.equal([2,1].toString());
   });
 
 });
