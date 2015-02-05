@@ -3,22 +3,20 @@ var decodeMorse = function(morseCode) {
   if(morseCode.search(/\s+/) === 0) {
     morseCode = morseCode.replace(/\s+/, '');
   }
-  
+
   // remove white space at the end of the string
   morseCode = morseCode.replace(/\s+$/, '');
 
-  console.log('white-spaceless morse: ', morseCode );
   var message = '';
   var words = [];
 
   // separate input by words (three spaces)
-  // while( morseCode.search(/(\s){3}/) ) {
-  //   words.push( morseCode.substring(0, morseCode.search(/(\s){3}/)) );
-  //   // then remove the word
-  //   morseCode = morseCode.substring(morseCode.search(/(\s){3}/));
-  //   // remove space at the start
-  //   morseCode = morseCode.replace(/\s+/, '');
-  // }
+  while( morseCode.search(/(\s){3}/) !== -1 ) {
+    words.push( morseCode.substring(0, morseCode.search(/(\s){3}/)) );
+    // then remove the word and whitespace
+    morseCode = morseCode.substring( (morseCode.search(/(\s){3}/) + 3) );
+    console.log(morseCode);
+  }
 
   // There should be one word left over
   words.push(morseCode);
