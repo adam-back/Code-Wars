@@ -19,18 +19,17 @@ var decodeMorse = function(morseCode) {
 
   // There should be one word left over
   words.push(morseCode);
-  console.log('length', words.length );
+
   // loop through words
   for(var i = 0; i < words.length; i++) {
     var word = words[i];
-    console.log('word: ', word );
     // separate word into characters (one space)
     var characters = word.match(/(\S){1,}/g);
     
     // loop through characters
-    for (var i = 0; i < characters.length; i++) {
+    for (var j = 0; j < characters.length; j++) {
       // translate character to english, add to message
-      message += MORSE_CODE[characters[i]];
+      message += MORSE_CODE[characters[j]];
     };
 
     // add space after word 
