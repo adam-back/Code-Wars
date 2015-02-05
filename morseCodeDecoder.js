@@ -15,15 +15,15 @@ var decodeMorse = function(morseCode) {
     words.push( morseCode.substring(0, morseCode.search(/(\s){3}/)) );
     // then remove the word and whitespace
     morseCode = morseCode.substring( (morseCode.search(/(\s){3}/) + 3) );
-    console.log(morseCode);
   }
 
   // There should be one word left over
   words.push(morseCode);
-
+  console.log('length', words.length );
   // loop through words
   for(var i = 0; i < words.length; i++) {
     var word = words[i];
+    console.log('word: ', word );
     // separate word into characters (one space)
     var characters = word.match(/(\S){1,}/g);
     
