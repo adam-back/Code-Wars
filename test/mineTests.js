@@ -2,7 +2,7 @@ var expect = require('chai').expect;
 var mineLocation = require('../mineLocation').mineLocation;
 var location;
 
-describe.only('mineLocation', function() {
+describe('mineLocation', function() {
   it('should be a function', function() {
     expect(mineLocation).to.be.a('function');
   });
