@@ -38,7 +38,7 @@ describe.only('mineLocation', function() {
                               [0, 1, 0, 0], 
                               [0, 0, 0, 0] ]); 
 
-    expect(location).to.equal([1,2]);
+    expect(location).to.equal([2,1]);
   });
 
 });
