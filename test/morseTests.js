@@ -35,6 +35,6 @@ describe('Morse code', function() {
   });
 
   it('should recognize SOS in a sentence', function() {
-    expect(decodeMorse('---- . .-.. .--.   ...---...   -.-.--')).to.equal('HELP SOS!');
+    expect(decodeMorse('.... . .-.. .--.   ...---... -.-.--')).to.equal('HELP SOS!');
   });
 });
