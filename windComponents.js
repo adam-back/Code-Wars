@@ -1,5 +1,8 @@
 function windComponents(rwy, windDirection, windSpeed) {
-  var headOrTail, htSpeed, cwSpeed, lrCW;
+  var headOrTail = "Head"
+  var htSpeed = 0;
+  var cwSpeed = 0;
+  var lrCW = 'left';
 
   // remove ending letter from runway
   rwy = rwy.match(/\d{2}/)[0];
