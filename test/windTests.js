@@ -16,11 +16,11 @@ describe('windComponents', function() {
   });
 
   it('should return a message with headwind/right crosswind', function() {
-    expect(windComponents("4C",90, 25)).to.equal("Headwind 15 knots. Crosswind 3 knots from your left.");
+    expect(windComponents("4C",90, 25)).to.equal("Headwind 16 knots. Crosswind 19 knots from your right.");
   });
 
   it('should return a message with tailwind/left crosswind', function() {
-    expect(windComponents("30R",170,5)).to.equal("Headwind 15 knots. Crosswind 3 knots from your left.");
+    expect(windComponents("30R",170,5)).to.equal("Tailwind 3 knots. Crosswind 4 knots from your left.");
   });
 
   it('should return a message with tailwind/right crosswind', function() {
