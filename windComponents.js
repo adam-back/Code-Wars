@@ -21,18 +21,11 @@ function windComponents(rwy, windDirection, windSpeed) {
 function makeMessage(headOrTail, htSpeed, cwSpeed, lrCW) {
   var message = "";
 
-  // checks for head/tailwind
-  if( htSpeed !== 0 ) {
-    message += headOrTail + "wind " + htSpeed + " knots."
+  if( htSpeed === 0 ) {
+    message += headOrTail + " " + htSpeed + " knots. Crosswind " + cwSpeed + " knots from your " + lrCW + "."    
   } else {
-    message += "Crosswind " + cwSpeed + " knots from your " + lrCW + "."
+    message += headOrTail + "wind " + htSpeed + " knots. Crosswind " + cwSpeed + " knots from your " + lrCW + "."
   }
-
-  //
-  if( cwSpeed !== 0 && htSpeed !== 0 ) {
-    message += " Crosswind " + cwSpeed + " knots from your " + lrCW + "."
-  }
-
   return message;
 };
 
