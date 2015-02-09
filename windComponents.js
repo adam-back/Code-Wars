@@ -16,16 +16,10 @@ function windComponents(rwy, windDirection, windSpeed) {
   // if the (absolute) difference is greater than 90
   if( Math.abs( difference ) >= 90 ) {
     // flip the runway direction
-    if( rwy >= 180 ) {
-      difference = (rwy - 180) - windDirection;
-    } else {
-      difference = (rwy + 180) - windDirection;
-    }
+    difference = flipRunway( rwy ) - windDirection;
 
-    console.log('what is rwy? ', rwy);
     // it's a tailwind
     headOrTail = "Tail";
-    console.log('difference: ', difference );
   }
 
   // calculate head/tailwind
@@ -37,7 +31,7 @@ function windComponents(rwy, windDirection, windSpeed) {
   cwSpeed = Math.round(cwSpeed);
 
   // determine if left or right
-  if( windDirection < rwy && windDirection > Math.abs(rwy - 180) ) {
+  if( windDirection < rwy && windDirection > flipRunway(rwy) ) {
     lrCW = 'left';
   }
 
@@ -45,6 +39,14 @@ function windComponents(rwy, windDirection, windSpeed) {
   // "(Head|Tail)wind N knots. Crosswind N knots from your (left|right)."
 
   return makeMessage(headOrTail, htSpeed, cwSpeed, lrCW);
+};
+
+var flipRunway = function(runwayDegrees) {
+  if( runwayDegrees >= 180 ) {
+    return runwayDegrees - 180;
+  } else {
+    return runwayDegrees + 180;
+  }
 };
 
 function makeMessage(headOrTail, htSpeed, cwSpeed, lrCW) {
