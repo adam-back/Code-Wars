@@ -24,8 +24,17 @@ describe('windComponents', function() {
   });
 
   it('should return a message with tailwind/right crosswind', function() {
-    expect(windComponents("9",195,35)).to.equal("Headwind 15 knots. Crosswind 3 knots from your left.");
+    expect(windComponents("9",195,35)).to.equal("Tailwind 9 knots. Crosswind 34 knots from your right.");
   });
+
+  it('should return a message with head, but no crosswind', function() {
+    expect(windComponents("26C", 255, 5)).to.equal("Headwind 5 knots. Crosswind 0 knots from your right.");
+  });
+
+  it('should return a message with no head or tailwind, but a right crosswind', function() {
+    expect(windComponents("18L", 270, 5)).to.equal("Head 0 knots. Crosswind 5 knots from your right.");
+  });
+
 });
 
 describe('makeMessage', function() {
