@@ -16,10 +16,12 @@ function windComponents(rwy, windDirection, windSpeed) {
   // if the (absolute) difference is greater than 90
   if( Math.abs( difference ) >= 90 ) {
     // flip the runway direction
-    rwy -= 180;
+    rwy = rwy - 180;
+    console.log('what is rwy? ', rwy);
     // it's a tailwind
     headOrTail = "Tail";
-    difference = rwy - windSpeed;
+    difference = rwy - windDirection;
+    console.log('difference: ', difference );
   }
 
   // calculate head/tailwind
