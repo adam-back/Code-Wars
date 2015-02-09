@@ -2,18 +2,38 @@ function windComponents(rwy, windDirection, windSpeed) {
   var headOrTail = "Head"
   var htSpeed = 0;
   var cwSpeed = 0;
-  var lrCW = 'left';
+  var lrCW = 'right';
+  var difference = 0;
 
   // remove ending letter from runway
   rwy = rwy.match(/\d{2}/)[0];
   // convert runway to degrees
   rwy = +rwy * 10;
 
+  difference = rwy - windDirection;
 
+  // subtract direction of travel and wind direction
+  // if the (absolute) difference is greater than 90
+  if( Math.abs( difference ) >= 90 ) {
+    // flip the runway direction
+    rwy -= 180;
+    // it's a tailwind
+    headOrTail = "Tail";
+    difference = rwy - windSpeed;
+  }
 
+  // calculate head/tailwind
+  htSpeed = Math.cos( Math.abs(difference) * (Math.PI / 180)  ) * windSpeed;
+  htSpeed = Math.round(htSpeed);
 
+  // calculate crosswind
+  cwSpeed = Math.sin( Math.abs(difference) * (Math.PI / 180)  ) * windSpeed;
+  cwSpeed = Math.round(cwSpeed);
 
-
+  // determine if left or right
+  if( windDirection < rwy && windDirection > Math.abs(rwy - 180) ) {
+    lrCW = 'left';
+  }
 
   // Format of output:
   // "(Head|Tail)wind N knots. Crosswind N knots from your (left|right)."
