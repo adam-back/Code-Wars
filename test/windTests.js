@@ -2,9 +2,9 @@ var expect = require('chai').expect;
 var windComponents = require('../windComponents').windComponents;
 var makeMessage = require('../windComponents').makeMessage;
 
-describe.only('Airplane landing wind: ', function() {
+describe('Airplane landing wind: ', function() {
   
-  describe('windComponents', function() {
+  describe.only('windComponents', function() {
     it('should be a function', function() {
       expect(windComponents).to.be.a('function');
     });
@@ -18,7 +18,7 @@ describe.only('Airplane landing wind: ', function() {
     });
 
     it('should return a message with headwind/right crosswind', function() {
-      expect(windComponents("4C",90, 25)).to.equal("Headwind 16 knots. Crosswind 19 knots from your right.");
+      expect(windComponents("04C",90, 25)).to.equal("Headwind 16 knots. Crosswind 19 knots from your right.");
     });
 
     it('should return a message with tailwind/left crosswind', function() {
@@ -26,7 +26,7 @@ describe.only('Airplane landing wind: ', function() {
     });
 
     it('should return a message with tailwind/right crosswind', function() {
-      expect(windComponents("9",195,35)).to.equal("Tailwind 9 knots. Crosswind 34 knots from your right.");
+      expect(windComponents("09",195,35)).to.equal("Tailwind 9 knots. Crosswind 34 knots from your right.");
     });
 
     it('should return a message with head, but no crosswind', function() {
@@ -38,7 +38,7 @@ describe.only('Airplane landing wind: ', function() {
     });
 
     it('should return a message with no winds', function() {
-      expect(windComponents("7", 23, 0)).to.equal("Head 0 knots. Crosswind 0 knots from your right.");
+      expect(windComponents("07", 23, 0)).to.equal("Head 0 knots. Crosswind 0 knots from your right.");
     });
 
   });
