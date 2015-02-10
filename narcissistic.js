@@ -14,5 +14,3 @@ function narcissistic( value ) {
 
   return comparison === value;
 };
-
-module.exports.narcissistic = narcissistic;

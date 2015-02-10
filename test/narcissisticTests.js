@@ -1,6 +1,3 @@
-var expect = require('chai').expect;
-var narcissistic = require('../narcissistic').narcissistic;
-
 describe('Narcissistic', function() {
   it('should defined as a function', function() {
     expect(narcissistic).to.be.a('function');

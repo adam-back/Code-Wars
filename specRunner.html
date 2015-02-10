@@ -3,18 +3,21 @@
   <meta charset="utf-8">
   <title>Mocha Tests</title>
   <link rel="stylesheet" href="node_modules/mocha/mocha.css" />
-  <script src="node_modules/mocha/mocha.js"></script>
-  <script src="node_modules/chai/chai.js"></script>
-  <script src="node_modules/jquery/dist/jquery.min.js"></script>
-  <script>
-      mocha.setup('bdd');
-      window.expect = chai.expect;
-      mocha.run();
-    </script>
-  <script src="test/mineTests.js"></script>
-  <script src="mineLocation.js"></script>
 </head>
 <body>
   <div id="mocha"></div>
+  <script src="node_modules/mocha/mocha.js"></script>
+  <script>mocha.setup('bdd');</script>
+  <script src="node_modules/chai/chai.js"></script>
+  <script>var expect = chai.expect;</script>
+
+  <!-- src files -->
+  <script src="narcissistic.js"></script>
+  <script src="morseCodeDecoder.js"></script>
+
+  <!-- test files -->
+  <script src="test/narcissisticTests.js"></script>
+  <script src="test/morseTests.js"></script>
+  <script>mocha.run();</script>
 </body>
 </html>

@@ -98,5 +98,3 @@ var MORSE_CODE = { '-.-.--': '!',
                     '--..': 'Z',
                     '..--.-': '_',
                     '...---...': 'SOS' };
-
-module.exports.decodeMorse = decodeMorse;
