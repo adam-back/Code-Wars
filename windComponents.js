@@ -59,6 +59,3 @@ function makeMessage(headOrTail, htSpeed, cwSpeed, lrCW) {
   }
   return message;
 };
-
-module.exports.windComponents = windComponents;
-module.exports.makeMessage = makeMessage;

@@ -1,10 +1,5 @@
-var expect = require('chai').expect;
-var windComponents = require('../windComponents').windComponents;
-var makeMessage = require('../windComponents').makeMessage;
-
 describe('Airplane landing wind:', function() {
-  
-  describe.only('windComponents', function() {
+  describe('windComponents', function() {
     it('should be a function', function() {
       expect(windComponents).to.be.a('function');
     });
