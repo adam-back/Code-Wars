@@ -17,5 +17,3 @@ function mineLocation(field) {
   // return [row, column]
   return location;
 };
-
-module.exports.mineLocation = mineLocation;

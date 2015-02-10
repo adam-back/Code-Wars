@@ -1,5 +1,3 @@
-var expect = require('chai').expect;
-var mineLocation = require('../mineLocation').mineLocation;
 var location;
 
 describe('mineLocation', function() {
