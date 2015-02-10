@@ -1,6 +1,7 @@
-var location;
 
 describe('mineLocation', function() {
+  var location;
+  
   it('should be a function', function() {
     expect(mineLocation).to.be.a('function');
   });
