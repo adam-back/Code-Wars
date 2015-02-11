@@ -14,7 +14,7 @@ function windComponents(rwy, windDirection, windSpeed) {
 
   // subtract direction of travel and wind direction
   // if the (absolute) difference is greater than 90
-  if( Math.abs( difference ) >= 90 ) {
+  if( Math.abs( difference ) > 90 ) {
     // flip the runway direction
     difference = flipRunway( rwy ) - windDirection;
 
