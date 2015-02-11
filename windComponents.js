@@ -1,5 +1,5 @@
 function windComponents(rwy, windDirection, windSpeed) {
-  var headOrTail = "Head"
+  var headOrTail = "Head";
   var htSpeed = 0;
   var cwSpeed = 0;
   var lrCW = 'right';
@@ -13,16 +13,6 @@ function windComponents(rwy, windDirection, windSpeed) {
 
   difference = rwy - windDirection;
 
-  // subtract direction of travel and wind direction
-  // if the (absolute) difference is greater than 90
-  if( Math.abs( difference ) > 90 ) {
-    // flip the runway direction
-    difference = flipRunway( rwy ) - windDirection;
-
-    // it's a tailwind
-    headOrTail = "Tail";
-  }
-
   // calculate head/tailwind
   htSpeed = Math.cos( Math.abs(difference) * (Math.PI / 180)  ) * windSpeed;
   htSpeed = Math.round( Math.abs(htSpeed) );
@@ -31,8 +21,7 @@ function windComponents(rwy, windDirection, windSpeed) {
   cwSpeed = Math.sin( Math.abs(difference) * (Math.PI / 180)  ) * windSpeed;
   cwSpeed = Math.round( Math.abs(cwSpeed) );
 
-  difference = rwy - windDirection
-
+  // place runway at 0 on compass
   if( (windDirection - rwy) < 0) {
     difference = 360 + (windDirection - rwy);
   } else {
@@ -66,21 +55,8 @@ function windComponents(rwy, windDirection, windSpeed) {
   return makeMessage(headOrTail, htSpeed, cwSpeed, lrCW);
 };
 
-var flipRunway = function(runwayDegrees) {
-  if( runwayDegrees >= 180 ) {
-    return runwayDegrees - 180;
-  } else {
-    return runwayDegrees + 180;
-  }
-};
-
 function makeMessage(headOrTail, htSpeed, cwSpeed, lrCW) {
   var message = "";
-
-  if( htSpeed === 0 ) {
-    message += "Headwind 0 knots. Crosswind " + cwSpeed + " knots from your " + lrCW + "."    
-  } else {
-    message += headOrTail + "wind " + htSpeed + " knots. Crosswind " + cwSpeed + " knots from your " + lrCW + "."
-  }
+  message += headOrTail + "wind " + htSpeed + " knots. Crosswind " + cwSpeed + " knots from your " + lrCW + "."
   return message;
 };

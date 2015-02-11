@@ -1,5 +1,5 @@
 describe('Airplane landing wind:', function() {
-  describe.only('windComponents', function() {
+  describe('windComponents', function() {
     it('should be a function', function() {
       expect(windComponents).to.be.a('function');
     });
@@ -77,7 +77,7 @@ describe('Airplane landing wind:', function() {
     
     it('should return message for no headwind/tailwind', function() {
       var message = makeMessage('Head', 0, 23, 'right');
-      expect(message).to.equal("Head 0 knots. Crosswind 23 knots from your right.");
+      expect(message).to.equal("Headwind 0 knots. Crosswind 23 knots from your right.");
     });
 
     it('should return message for no crosswind', function() {
