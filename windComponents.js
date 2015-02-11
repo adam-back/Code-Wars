@@ -31,12 +31,34 @@ function windComponents(rwy, windDirection, windSpeed) {
   cwSpeed = Math.sin( Math.abs(difference) * (Math.PI / 180)  ) * windSpeed;
   cwSpeed = Math.round( Math.abs(cwSpeed) );
 
+  difference = rwy - windDirection
+
+  if( (windDirection - rwy) < 0) {
+    difference = 360 - (windDirection - rwy);
+  } else {
+    difference = windDirection - rwy;
+  }
+
+  // head or tail
+  if( htSpeed === 0 ) {
+    headOrTail = "Head";
+  } else {
+    if( difference > 270 || difference < 90 ) {
+      headOrTail = "Head";
+    } else {
+      headOrTail = "Tail";
+    }
+  }
   // determine if left or right
   if( cwSpeed === 0 ) {
     lrCW = 'right';
-  } else if ( windDirection - rwy < 0 || (windDirection - rwy) > 180 ) {
-    lrCW = 'left';
-  } 
+  } else {
+    if( difference < 180 ) {
+      lrCW = 'right';
+    } else {
+      lrCW = 'left';
+    }
+  }
 
   // Format of output:
   // "(Head|Tail)wind N knots. Crosswind N knots from your (left|right)."
