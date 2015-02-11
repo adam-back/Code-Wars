@@ -6,7 +6,8 @@ function windComponents(rwy, windDirection, windSpeed) {
   var difference = 0;
 
   // remove ending letter from runway
-  rwy = rwy.match(/\d{2}/)[0];
+  // idealy, rwy should always have two numbers, single digits like 02C
+  rwy = rwy.match(/\d{1,2}/)[0];
   // convert runway to degrees
   rwy = +rwy * 10;
 
