@@ -34,7 +34,7 @@ function windComponents(rwy, windDirection, windSpeed) {
   difference = rwy - windDirection
 
   if( (windDirection - rwy) < 0) {
-    difference = 360 - (windDirection - rwy);
+    difference = 360 + (windDirection - rwy);
   } else {
     difference = windDirection - rwy;
   }
