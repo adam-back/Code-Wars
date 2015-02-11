@@ -31,7 +31,7 @@ function windComponents(rwy, windDirection, windSpeed) {
   cwSpeed = Math.round(cwSpeed);
 
   // determine if left or right
-  if( windDirection < rwy && windDirection > flipRunway(rwy) ) {
+  if( cwSpeed !== 0 && windDirection < rwy && windDirection > flipRunway(rwy) ) {
     lrCW = 'left';
   }
 
