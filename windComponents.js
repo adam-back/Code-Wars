@@ -25,16 +25,18 @@ function windComponents(rwy, windDirection, windSpeed) {
 
   // calculate head/tailwind
   htSpeed = Math.cos( Math.abs(difference) * (Math.PI / 180)  ) * windSpeed;
-  htSpeed = Math.round(htSpeed);
+  htSpeed = Math.round( Math.abs(htSpeed) );
 
   // calculate crosswind
   cwSpeed = Math.sin( Math.abs(difference) * (Math.PI / 180)  ) * windSpeed;
-  cwSpeed = Math.round(cwSpeed);
+  cwSpeed = Math.round( Math.abs(cwSpeed) );
 
   // determine if left or right
-  if( cwSpeed !== 0 && windDirection < rwy && windDirection > flipRunway(rwy) ) {
+  if( cwSpeed === 0 ) {
+    lrCW = 'right';
+  } else if ( windDirection - rwy < 0 || (windDirection - rwy) > 180 ) {
     lrCW = 'left';
-  }
+  } 
 
   // Format of output:
   // "(Head|Tail)wind N knots. Crosswind N knots from your (left|right)."
@@ -54,7 +56,7 @@ function makeMessage(headOrTail, htSpeed, cwSpeed, lrCW) {
   var message = "";
 
   if( htSpeed === 0 ) {
-    message += headOrTail + " " + htSpeed + " knots. Crosswind " + cwSpeed + " knots from your " + lrCW + "."    
+    message += "Headwind 0 knots. Crosswind " + cwSpeed + " knots from your " + lrCW + "."    
   } else {
     message += headOrTail + "wind " + htSpeed + " knots. Crosswind " + cwSpeed + " knots from your " + lrCW + "."
   }

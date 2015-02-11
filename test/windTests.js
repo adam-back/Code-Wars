@@ -1,5 +1,5 @@
 describe('Airplane landing wind:', function() {
-  describe('windComponents', function() {
+  describe.only('windComponents', function() {
     it('should be a function', function() {
       expect(windComponents).to.be.a('function');
     });
@@ -29,13 +29,36 @@ describe('Airplane landing wind:', function() {
     });
 
     it('should return a message with no head or tailwind, but a right crosswind', function() {
-      expect(windComponents("18L", 270, 5)).to.equal("Head 0 knots. Crosswind 5 knots from your right.");
+      expect(windComponents("18L", 270, 5)).to.equal("Headwind 0 knots. Crosswind 5 knots from your right.");
     });
 
     it('should return a message with no winds', function() {
-      expect(windComponents("07", 23, 0)).to.equal("Head 0 knots. Crosswind 0 knots from your right.");
+      expect(windComponents("07", 23, 0)).to.equal("Headwind 0 knots. Crosswind 0 knots from your right.");
     });
 
+    it('should have T1, 4R', function() {
+      expect(windComponents('21', 312, 4)).to.equal("Tailwind 1 knots. Crosswind 4 knots from your right.");
+    });
+
+    it('should have H22, 28L', function() {
+      expect(windComponents('08', 28, 35)).to.equal("Headwind 22 knots. Crosswind 28 knots from your left.");
+    });
+
+    it('should have T25, 16L', function() {
+      expect(windComponents('08', 292, 30)).to.equal("Tailwind 25 knots. Crosswind 16 knots from your left.");
+    });
+
+    it('should have H0, 1L', function() {
+      expect(windComponents('29', 174, 1)).to.equal("Headwind 0 knots. Crosswind 1 knots from your left.");
+    });
+
+    it('should have H1, 17L', function() {
+      expect(windComponents('02', 294, 17)).to.equal("Headwind 1 knots. Crosswind 17 knots from your left.");
+    });
+
+    it('should have H0, 1R', function() {
+      expect(windComponents('06', 127, 1)).to.equal("Headwind 0 knots. Crosswind 1 knots from your right.");
+    });
   });
 
   describe('makeMessage', function() {
