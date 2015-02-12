@@ -17,7 +17,7 @@ describe('Santa Party, getAttendees', function() {
   });
 
   it('should have attendees', function() {
-    expect( getAttendees( people, responses ) ).to.be("['Tooth Fairy', 'Frosty the Snowman', 'Cupid', 'Father Time']");
+    expect( getAttendees( people, responses ).toString() ).to.equal(['Tooth Fairy', 'Frosty the Snowman', 'Cupid', 'Father Time'].toString());
   });
 
   it('should return an empty array if no one is coming', function() {
@@ -29,6 +29,6 @@ describe('Santa Party, getAttendees', function() {
        {name: 'Cupid', response: 'declined'}, 
        {name: 'Father Time', response: 'declined'}, 
      ];
-    expect( getAttendees( people, responses ).toString() ).to.equal('[]');
+    expect( getAttendees( people, responses ).toString() ).to.equal('');
   });
 });
