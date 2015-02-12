@@ -23,7 +23,7 @@ describe('Callback closure', function() {
     };
   });
 
-  it.only('should return correct number', function() {
+  it('should return correct number', function() {
     var callbacks = createFunctions(5);
 
     for (var i=0; i<callbacks.length; i++) {

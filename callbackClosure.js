@@ -1,14 +1,11 @@
-var createFunctions = function(n) {
+function createFunctions(n) {
   var callbacks = [];
 
-  debugger;
-  for ( var i = 0; i < n; i++) {
-    var callback = function(i) {
+  for (var i=0; i<n; i++) {
+    callbacks.push(function(i) {
       return i;
-    };
-
-    callbacks.push(callback);
-  };
+    }.bind(this, i));
+  }
   
   return callbacks;
-};
+}
