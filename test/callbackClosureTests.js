@@ -1,4 +1,4 @@
-describe.only('Callback closure', function() {
+describe('Callback closure', function() {
   it('should be a function', function() {
     expect(createFunctions).to.be.a('function');
   });
@@ -23,7 +23,7 @@ describe.only('Callback closure', function() {
     };
   });
 
-  it('should return correct number', function() {
+  it.only('should return correct number', function() {
     var callbacks = createFunctions(5);
 
     for (var i=0; i<callbacks.length; i++) {
