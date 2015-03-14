@@ -53,5 +53,21 @@ describe.only('Convert RGB to Hexadecimal', function() {
     it('should be a function', function() {
       expect(rgb).to.be.a('function');
     });
+
+    it('should convert 255, 255, 255 to FFFFFF', function() {
+      expect(rgb(255,255,255)).to.equal('FFFFFF');
+    });
+
+    it('should convert 255, 255, 300 to FFFFFF', function() {
+      expect(rgb(255,255,300)).to.equal('FFFFFF');
+    });
+
+    it('should convert 0, 0, 0 to 000000', function() {
+      expect(rgb(0,0,0)).to.equal('000000');
+    });
+
+    it('should convert 148, 0, 211 to 9400D3', function() {
+      expect(rgb(148,0,211)).to.equal('9400D3');
+    });
   });
 });
