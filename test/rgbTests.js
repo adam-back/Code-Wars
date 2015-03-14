@@ -9,7 +9,7 @@ describe.only('Convert RGB to Hexadecimal', function() {
     });
 
     it('should be two digits long', function() {
-      expect(convertNumberToHex(12).length).to.be(2);
+      expect(convertNumberToHex(12).length).to.equal(2);
     });
 
     it('should convert 0 to \'00\'', function() {
