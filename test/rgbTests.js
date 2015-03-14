@@ -31,6 +31,22 @@ describe.only('Convert RGB to Hexadecimal', function() {
     it('should convert 16 to be \'10\'', function() {
       expect(convertNumberToHex(16)).to.equal('10');
     });
+
+    it('should convert 255 to be \'FF\'', function() {
+      expect(convertNumberToHex(255)).to.equal('FF');
+    });
+
+    it('should convert 300 to be \'FF\'', function() {
+      expect(convertNumberToHex(300)).to.equal('FF');
+    });
+
+    it('should convert 148 to be \'94\'', function() {
+      expect(convertNumberToHex(148)).to.equal('94');
+    });
+
+    it('should convert 211 to be \'D3\'', function() {
+      expect(convertNumberToHex(211)).to.equal('D3');
+    });
   });
 
   describe('Convert whole RGB', function() {
