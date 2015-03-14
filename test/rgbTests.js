@@ -51,7 +51,7 @@ describe.only('Convert RGB to Hexadecimal', function() {
 
   describe('Convert whole RGB', function() {
     it('should be a function', function() {
-      expect(convertRGB).to.be.a('function');
+      expect(rgb).to.be.a('function');
     });
   });
 });

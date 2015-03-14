@@ -3,7 +3,7 @@ var convertNumberToHex = function(num) {
   var current = ['0','0'];
   var hexCounter = 1;
   var placeValue = 1;
-  debugger;
+
   for (var i = 1; i <= num; i++) {
     // if number is not at F
     if( hexCounter !== 16 ) {
@@ -30,6 +30,6 @@ var convertNumberToHex = function(num) {
   return current.join('');
 };
 
-var convertRGB = function(n1, n2, n3) {
+var rgb = function(n1, n2, n3) {
 
 };
