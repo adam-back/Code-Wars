@@ -31,5 +31,12 @@ var convertNumberToHex = function(num) {
 };
 
 var rgb = function(n1, n2, n3) {
+  var numbers = [n1, n2, n3];
+  var output = [];
 
+  for (var i = 0; i < numbers.length; i++) {
+    output.push( convertNumberToHex(numbers[i]) );
+  };
+
+  return output.join('');
 };
