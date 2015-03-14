@@ -3,16 +3,19 @@ var convertNumberToHex = function(num) {
   var current = ['0','0'];
   var hexCounter = 0;
   var placeValue = 1;
-
-  for (var i = 0; i < num; i++) {
+  for (var i = 0; i <= num; i++) {
+    // if number is not at F
     if( hexCounter !== 16 ) {
+      // replace it with the next highest
       current.pop();
       current.push( hexDigits[hexCounter] );
       hexCounter++;
+      // if number is maxed out at F
     } else {
+      // if it's not time to increase place values
       if( current[placeValue - 1] !== 'F' ) {
         hexCounter = 0;
-        current[placeValue - 1]++;
+        current[placeValue - 1] = hexDigits[ hexDigits.indexOf( current[placeValue - 1] ) + 1 ];
       } else {
         
       }

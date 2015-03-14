@@ -13,23 +13,23 @@ describe.only('Convert RGB to Hexadecimal', function() {
     });
 
     it('should convert 0 to \'00\'', function() {
-      expect(convertNumberToHex(0)).to.be('00');
+      expect(convertNumberToHex(0)).to.equal('00');
     });
 
     it('should 9 convert to \'09\'', function() {
-      expect(convertNumberToHex(9)).to.be('09');
+      expect(convertNumberToHex(9)).to.equal('09');
     });
 
     it('should convert 10 to be \'0A\'', function() {
-      expect(convertNumberToHex(10)).to.be('0A');
+      expect(convertNumberToHex(10)).to.equal('0A');
     });
 
     it('should convert 15 to be \'0F\'', function() {
-      expect(convertNumberToHex(15)).to.be('0F');
+      expect(convertNumberToHex(15)).to.equal('0F');
     });
 
     it('should convert 16 to be \'10\'', function() {
-      expect(convertNumberToHex(16)).to.be('10');
+      expect(convertNumberToHex(16)).to.equal('10');
     });
   });
 
