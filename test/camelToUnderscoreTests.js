@@ -1,5 +1,5 @@
-describe('toUnderscore', function() {
+describe.only('toUnderscore', function() {
   it('should be a function', function() {
-    expect(toUnderscore('ab')).to.be.a('function');
+    expect(toUnderscore).to.be.a('function');
   });
 });
