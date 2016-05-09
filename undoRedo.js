@@ -16,7 +16,7 @@ function undoRedo( object ) {
   object.del = function( key ) {
     _undoAction = [ 'set', key ];
     _redoAction = undefined;
-    return delete[ key ];
+    return delete this[ key ];
   };
 
   object.undo = function() {

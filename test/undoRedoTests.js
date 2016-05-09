@@ -58,6 +58,19 @@ describe.only('undoRedo', function() {
       expect( undidObj ).to.have.property( 'del' );
       expect( undidObj.del ).to.be.a( 'function' );
     });
+
+    it('should not error when provided a key that doesn\'t exist yet', function() {
+      expect( undidObj.del ).not.to.throw( new Error() );
+    });
+
+    it('should delete key from object', function() {
+      expect( undidObj.get( 'Adam' ) ).to.equal( undefined );
+      undidObj.set( 'Adam', 1 );
+      expect( undidObj.get( 'Adam' ) ).to.equal( 1 );
+      var returned = undidObj.del( 'Adam' );
+      console.log( 'returned', returned );
+      expect( undidObj.get( 'Adam' ) ).to.equal( undefined );
+    });
   });
 
   describe('undo', function() {
