@@ -78,12 +78,56 @@ describe.only('undoRedo', function() {
       expect( undidObj ).to.have.property( 'undo' );
       expect( undidObj.undo ).to.be.a( 'function' );
     });
+
+    it('should throw an exception if nothing to undo', function() {
+      expect( undidObj.undo ).to.throw( /There is nothing to undo/ );
+    });
+
+    it('should undo a set', function() {
+      undidObj.set( 'key', 1 );
+      expect( undidObj.key ).to.equal( 1 );
+      undidObj.undo();
+      expect( undidObj.key ).to.equal( undefined );
+    });
+
+    it('should undo a delete (del)', function() {
+      undidObj.set( 'key', 1 );
+      expect( undidObj.key ).to.equal( 1 );
+      undidObj.del( 'key' );
+      expect( undidObj.key ).to.equal( undefined );
+      undidObj.undo();
+      expect( undidObj.key ).to.equal( 1 );
+    });
   });
 
   describe('redo', function() {
     it('should have a redo method', function() {
       expect( undidObj ).to.have.property( 'redo' );
       expect( undidObj.redo ).to.be.a( 'function' );
+    });
+
+    it('should throw an exception if nothing to redo', function() {
+      expect( undidObj.redo ).to.throw( /There is nothing to redo/ );
+    });
+
+    it('should redo a set', function() {
+      undidObj.set( 'key', 1 );
+      expect( undidObj.key ).to.equal( 1 );
+      undidObj.undo();
+      expect( undidObj.key ).to.equal( undefined );
+      undidObj.redo();
+      expect( undidObj.key ).to.equal( 1 );
+    });
+
+    it('should redo a delete (del)', function() {
+      undidObj.set( 'key', 1 );
+      expect( undidObj.key ).to.equal( 1 );
+      undidObj.del( 'key' );
+      expect( undidObj.key ).to.equal( undefined );
+      undidObj.undo();
+      expect( undidObj.key ).to.equal( 1 );
+      undidObj.redo();
+      expect( undidObj.key ).to.equal( undefined );
     });
   });
 });
