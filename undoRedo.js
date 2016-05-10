@@ -4,9 +4,15 @@ function undoRedo( object ) {
   var _redoAction = undefined;
 
   object.set = function( key, value ) {
+    // if the key already exists
+    if ( this.hasOwnProperty( key ) ) {
+      _undoAction = [ 'set', key, this[ key ] ];
+    } else {
+      _undoAction = [ 'del', key ];
+    }
     this[ key ] = value;
-    _undoAction = [ 'del', key ];
     _redoAction = undefined;
+    return;
   };
 
   object.get = function( key ) {
