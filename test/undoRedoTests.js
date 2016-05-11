@@ -66,7 +66,6 @@ describe.only('undoRedo', function() {
       undidObj.set( 'Adam', 1 );
       expect( undidObj.get( 'Adam' ) ).to.equal( 1 );
       var returned = undidObj.del( 'Adam' );
-      console.log( 'returned', returned );
       expect( undidObj.get( 'Adam' ) ).to.equal( undefined );
     });
   });
@@ -81,28 +80,35 @@ describe.only('undoRedo', function() {
       expect( undidObj.undo ).to.throw( /There is nothing to undo/ );
     });
 
-    it('should undo a set where the key was new', function() {
-      undidObj.set( 'key', 1 );
-      expect( undidObj.key ).to.equal( 1 );
-      undidObj.undo();
-      expect( undidObj.key ).to.equal( undefined );
+    describe('new key', function() {
+      it('should undo a set', function() {
+        undidObj.set( 'key', 1 );
+        expect( undidObj.key ).to.equal( 1 );
+        undidObj.undo();
+        expect( undidObj.key ).to.equal( undefined );
+      });
     });
 
-    it('should undo a set where the key was not new', function() {
-      undidObj.set( 'x', 5 );
-      expect( undidObj.x ).to.equal( 5 );
-      undidObj.undo();
-      expect( undidObj.x ).to.equal( 1 );
+    describe('existing key', function() {
+      it('should undo a set', function() {
+        undidObj.set( 'x', 5 );
+        expect( undidObj.x ).to.equal( 5 );
+        undidObj.undo();
+        expect( undidObj.x ).to.equal( 1 );
+      });
+
+      it('should undo a delete (del)', function() {
+        undidObj.set( 'key', 1 );
+        expect( undidObj.key ).to.equal( 1 );
+        undidObj.del( 'key' );
+        expect( undidObj.key ).to.equal( undefined );
+        undidObj.undo();
+        expect( undidObj.key ).to.equal( 1 );
+      });
     });
 
-    it('should undo a delete (del)', function() {
-      undidObj.set( 'key', 1 );
-      expect( undidObj.key ).to.equal( 1 );
-      undidObj.del( 'key' );
-      expect( undidObj.key ).to.equal( undefined );
-      undidObj.undo();
-      expect( undidObj.key ).to.equal( 1 );
-    });
+
+
   });
 
   describe('redo', function() {
@@ -115,24 +121,46 @@ describe.only('undoRedo', function() {
       expect( undidObj.redo ).to.throw( /There is nothing to redo/ );
     });
 
-    it('should redo a set', function() {
-      undidObj.set( 'key', 1 );
-      expect( undidObj.key ).to.equal( 1 );
-      undidObj.undo();
-      expect( undidObj.key ).to.equal( undefined );
-      undidObj.redo();
-      expect( undidObj.key ).to.equal( 1 );
+    describe('new key', function() {
+      it('should redo a set', function() {
+        undidObj.set( 'key', 1 );
+        expect( undidObj.key ).to.equal( 1 );
+        undidObj.undo();
+        expect( undidObj.key ).to.equal( undefined );
+        undidObj.redo();
+        expect( undidObj.key ).to.equal( 1 );
+      });
+
+      it('should redo a delete (del)', function() {
+        undidObj.set( 'key', 1 );
+        expect( undidObj.key ).to.equal( 1 );
+        undidObj.del( 'key' );
+        expect( undidObj.key ).to.equal( undefined );
+        undidObj.undo();
+        expect( undidObj.key ).to.equal( 1 );
+        undidObj.redo();
+        expect( undidObj.key ).to.equal( undefined );
+      });
     });
 
-    it('should redo a delete (del)', function() {
-      undidObj.set( 'key', 1 );
-      expect( undidObj.key ).to.equal( 1 );
-      undidObj.del( 'key' );
-      expect( undidObj.key ).to.equal( undefined );
-      undidObj.undo();
-      expect( undidObj.key ).to.equal( 1 );
-      undidObj.redo();
-      expect( undidObj.key ).to.equal( undefined );
+    describe('existing key', function() {
+      it('should redo a set', function() {
+        undidObj.set( 'y', 3 );
+        expect( undidObj.y ).to.equal( 3 );
+        undidObj.undo();
+        expect( undidObj.y ).to.equal( 2 );
+        undidObj.redo();
+        expect( undidObj.y ).to.equal( 3 );
+      });
+
+      it('should redo a delete (del)', function() {
+        undidObj.del( 'y' );
+        expect( undidObj.y ).to.equal( undefined );
+        undidObj.undo();
+        expect( undidObj.y ).to.equal( 2 );
+        undidObj.redo();
+        expect( undidObj.y ).to.equal( undefined );
+      });
     });
   });
 });

@@ -2,13 +2,21 @@ function undoRedo( object ) {
   // action, key
   var _undoAction = undefined;
   var _redoAction = undefined;
+  var _previousValues = {};
+
+  // prepopulate with existing keys
+  for ( var key in object ) {
+    _previousValues[ key ] = object[ key ];
+  }
 
   object.set = function( key, value ) {
     // if the key already exists
     if ( this.hasOwnProperty( key ) ) {
-      _undoAction = [ 'set', key, this[ key ] ];
+      _undoAction = [ 'set', key ];
+      _previousValues[ key ] = this[ key ];
     } else {
       _undoAction = [ 'del', key ];
+      _previousValues[ key ] = undefined;
     }
     this[ key ] = value;
     _redoAction = undefined;
@@ -21,7 +29,8 @@ function undoRedo( object ) {
 
   object.del = function( key ) {
     // set, key, value
-    _undoAction = [ 'set', key, this[ key ] ];
+    _undoAction = [ 'set', key ];
+    _previousValues[ key ] = this[ key ];
     _redoAction = undefined;
     return delete this[ key ];
   };
@@ -32,14 +41,24 @@ function undoRedo( object ) {
       var key = _undoAction[ 1 ];
 
       if ( action === 'del' ) {
-        // set, key, value
-        _redoAction = [ 'set', key, this[ key ] ];
+        _redoAction = [ 'set', key ];
+        _previousValues[ key ] = this[ key ];
         delete this[ key ];
         _undoAction = undefined;
-        return;
-
       } else {
-        _redoAction = [ 'del', key ];
+        var oldValue = this[ key ];
+
+        if ( _previousValues[ key ] ) {
+          _redoAction = [ 'set', key ];
+          this[ key ] = _previousValues[ key ];
+          _previousValues[ key ] = oldValue;
+          //save for redo
+        } else {
+          _redoAction = [ 'del', key ];
+
+
+        }
+
         this[ key ] = _undoAction[ 2 ];
         _undoAction = undefined;
         return;
@@ -56,17 +75,15 @@ function undoRedo( object ) {
 
       if ( action === 'del' ) {
         // set, key, value
-        _undoAction = [ 'set', key, this[ key ] ];
+        _undoAction = [ 'set', key ];
         delete this[ key ];
         _undoAction = undefined;
-        return;
-
       } else {
-        _undoAction = [ 'del', key ];
-        this[ key ] = _redoAction[ 2 ];
+        this[ key ] = _previousValues[ key ];
         _undoAction = undefined;
-        return;
       }
+
+      return;
     } else {
       throw new Error( 'There is nothing to redo.' );
     }
