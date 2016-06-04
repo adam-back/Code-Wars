@@ -35,9 +35,17 @@ describe.only('inheritance', function() {
     });
 
     it('should have a bark method which returns sound', function() {
-      expect( Benji.hasOwnProperty( 'bark' ) ).to.be.true;
+      expect( Benji.hasOwnProperty( 'bark' ) ).to.be.false; // on prototype
       expect( Benji.bark ).to.be.a( 'function' );
       expect( Benji.bark() ).to.equal( 'woof' );
+    });
+
+    it('should be an instance of Dog', function() {
+      expect( Benji instanceof Dog ).to.be.true;
+    });
+
+    it('should be an instance of Animal', function() {
+      expect( Benji instanceof Animal ).to.be.true;
     });
   });
 });

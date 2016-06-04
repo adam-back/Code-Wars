@@ -1,18 +1,22 @@
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Introduction_to_Object-Oriented_JavaScript
+// great source
+
 // Animal Superclass
 var Animal = function( type ) {
-  return {
   // Type: mammal, fish, bird
-    type: type
-  };
+  this.type = type;
 };
 
 // Dog Subclass
 var Dog = function( breed, name ) {
-  return {
-    breed: breed,
-    name: name,
-    bark: function() {
-      return 'woof';
-    }
-  };
+  Animal.call( this, 'mammal' );
+  this.breed = breed;
+  this.name = name;
+};
+
+Dog.prototype = Object.create( Animal.prototype );
+Dog.prototype.constructor = Dog;
+
+Dog.prototype.bark = function() {
+  return 'woof';
 };
