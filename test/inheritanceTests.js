@@ -1,4 +1,4 @@
-describe.only('inheritance', function() {
+describe('inheritance', function() {
   describe('Animal Superclass', function() {
     var animal = new Animal( 'mammal' );
 
