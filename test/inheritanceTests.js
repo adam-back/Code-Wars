@@ -1,4 +1,4 @@
-describe('inheritance', function() {
+describe.only('inheritance', function() {
   describe('Animal Superclass', function() {
     var animal = new Animal( 'mammal' );
 
@@ -9,6 +9,15 @@ describe('inheritance', function() {
     it('should have a type mammal', function() {
       expect( animal.hasOwnProperty( 'type' ) ).to.be.true;
       expect( animal.type ).to.equal( 'mammal' );
+    });
+
+    it('should have a makeNoise method', function() {
+      expect( animal.hasOwnProperty( 'makeNoise' ) ).to.be.true;
+      expect( animal.makeNoise ).to.be.a( 'function' );
+    });
+
+    it('should make a sound', function() {
+      expect( animal.makeNoise( 'meow' ) ).to.equal( 'MEOW!' );
     });
   });
 
@@ -34,10 +43,10 @@ describe('inheritance', function() {
       expect( Benji.name ).to.equal( 'Benji' );
     });
 
-    it('should have a bark method which returns sound', function() {
-      expect( Benji.hasOwnProperty( 'bark' ) ).to.be.false; // on prototype
-      expect( Benji.bark ).to.be.a( 'function' );
-      expect( Benji.bark() ).to.equal( 'woof' );
+    it('should have inherit a makeNoise method which returns sound', function() {
+      expect( Benji.hasOwnProperty( 'makeNoise' ) ).to.be.true; // on prototype
+      expect( Benji.makeNoise ).to.be.a( 'function' );
+      expect( Benji.makeNoise( 'woof' ) ).to.equal( 'WOOF!' );
     });
 
     it('should be an instance of Dog', function() {

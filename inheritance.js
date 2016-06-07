@@ -5,6 +5,9 @@
 var Animal = function( type ) {
   // Type: mammal, fish, bird
   this.type = type;
+  this.makeNoise = function( noise ) {
+    return noise.toUpperCase() + '!';
+  };
 };
 
 // Dog Subclass
@@ -16,7 +19,3 @@ var Dog = function( breed, name ) {
 
 Dog.prototype = Object.create( Animal.prototype );
 Dog.prototype.constructor = Dog;
-
-Dog.prototype.bark = function() {
-  return 'woof';
-};
