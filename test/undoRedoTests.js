@@ -1,4 +1,4 @@
-describe('undoRedo', function() {
+xdescribe('undoRedo', function() {
   var obj, undidObj;
 
   beforeEach(function() {
