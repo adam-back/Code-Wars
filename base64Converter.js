@@ -3,6 +3,8 @@ var convertBase64 = function( message ) {
 };
 
 var convertBinaryToText = function( message ) {
+  // credit where credit is due:
+  // https://github.com/grimmdude/asciibin/blob/master/asciibin.js
   var ascii_string = '';
   var current_byte;
   //split it into bytes
