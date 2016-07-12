@@ -1,4 +1,4 @@
-describe.only('Base 64 Converter', function() {
+describe('Base 64 Converter', function() {
   describe('convertBase64', function() {
     var sixtyFour = 'MDExMDExMTEwMTExMDAwMDAxMTAwMTAxMDExMDExMTAw MDEwMDAwMDAxMTEwMDExMDExMDAxMDEwMTExMDAxMTAx MTAwMDAxMDExMDExMDEwMTEwMDEwMQ==';
 
