@@ -50,6 +50,28 @@ LinkedList.prototype.pop = function() {
   }
 };
 
+LinkedList.prototype.remove = function( nodeVal ) {
+  var currentNode = this.head;
+
+  if ( !currentNode ) {
+    return false;
+  } else if ( currentNode.val === nodeVal ) {
+    this.head = this.head.next;
+    return true;
+  }
+
+  while( currentNode.next ) {
+    if ( currentNode.next.val === nodeVal ) {
+      currentNode.next = currentNode.next.next;
+      return true;
+    } else {
+      currentNode = currentNode.next;
+    }
+  }
+
+  return false;
+};
+
 LinkedList.prototype.reverse = function() {
   var nodes = [];
 

@@ -65,6 +65,51 @@ describe('LinkedList', function() {
     });
   });
 
+  describe('remove method', function() {
+    beforeEach(function() {
+      ll.push( 1 );
+      ll.push( 3 );
+      ll.push( 2 );
+      ll.push( 3 );
+    });
+
+    it('should exist on the prototype chain', function() {
+      expect( ll ).to.respondTo( 'remove' );
+    });
+
+    it('should return false if targeted node was not found', function() {
+      ll.pop();
+      ll.pop();
+      ll.pop();
+      ll.pop();
+      expect( ll.remove( 1 ) ).to.be.false;
+    });
+
+    it('should return true if the targeted value is found and removed', function() {
+      ll.push( 3 );
+      expect( ll.remove( 1 ) ).to.be.true;
+    });
+
+    it('should remove the first node with the targeted value', function() {
+      ll.remove( 3 );
+      expect( ll.head.next.val ).to.equal( 2 );
+      expect( ll.head.next.next.val ).to.equal( 3 );
+    });
+
+    it('should remove the head node', function() {
+      ll.remove( 1 );
+      expect( ll.head.val ).to.equal( 3 );
+      expect( ll.head.next.val ).to.equal( 2 );
+    });
+
+    it('should remove the tail node', function() {
+      ll.remove( 3 );
+      ll.remove( 3 );
+      expect( ll.head.next ).to.deep.equal( { val: 2, next: null } );
+    });
+
+  });
+
   describe('reverse method', function() {
     it('should exist on the prototype chain', function() {
       expect( ll ).to.respondTo( 'reverse' );
