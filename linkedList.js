@@ -26,6 +26,10 @@ LinkedList.prototype.push = function( val ) {
 LinkedList.prototype.reverse = function() {
   var nodes = [];
 
+  if ( !this.head || !this.head.next ) {
+    return this;
+  }
+
   // get all nodes
   var currentNode = this.head;
 
