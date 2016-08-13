@@ -2,9 +2,6 @@ var LinkedList = function() {
   this.head = null;
 };
 
-// no head yet
-// head
-
 LinkedList.prototype.push = function( val ) {
   var newNode = {
     val: val,
