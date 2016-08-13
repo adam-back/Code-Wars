@@ -23,6 +23,33 @@ LinkedList.prototype.push = function( val ) {
   return this;
 };
 
+LinkedList.prototype.pop = function() {
+  var removedNode;
+
+  if ( !this.head ) {
+    return null;
+  } else if( !this.head.next ) {
+    removedNode = this.head;
+    this.head = null;
+    return removedNode;
+  } else {
+    // move through the linked list to the last element
+    var lastElement;
+    var currentElement = this.head;
+
+    while( currentElement.next ) {
+      lastElement = currentElement;
+      currentElement = currentElement.next;
+    }
+
+    // remove reference to the element
+    removedNode = lastElement.next;
+    lastElement.next = null;
+    // return the node
+    return removedNode;
+  }
+};
+
 LinkedList.prototype.reverse = function() {
   var nodes = [];
 

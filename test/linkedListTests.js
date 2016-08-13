@@ -60,7 +60,7 @@ describe('LinkedList', function() {
       ll.push( 2 );
       ll.push( 3 );
       expect( ll.pop() ).to.deep.equal( { val: 3, next: null } );
-      expect( ll.head.val ).to.be( 1 );
+      expect( ll.head.val ).to.equal( 1 );
       expect( ll.head.next ).to.deep.equal( { val: 2, next: null } );
     });
   });
