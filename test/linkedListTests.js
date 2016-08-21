@@ -111,45 +111,97 @@ describe('LinkedList', function() {
   });
 
   describe('reverse method', function() {
-    it('should exist on the prototype chain', function() {
-      expect( ll ).to.respondTo( 'reverse' );
+    describe('simple', function() {
+      it('should exist on the prototype chain', function() {
+        expect( ll ).to.respondTo( 'reverse' );
+      });
+
+      it('should do nothing if head is not set', function() {
+        var reversed = ll.reverse();
+        expect( reversed.head ).to.be.null();
+      });
+
+      it('should do nothing if head is only node', function() {
+        ll.push( 1 );
+        var reversed = ll.reverse();
+        expect( reversed.head ).to.deep.equal( { val: 1, next: null } );
+      });
+
+      it('should reverse linked list for two elements', function() {
+        ll.push( 1 );
+        ll.push( 2 );
+        var reversed = ll.reverse();
+        expect( reversed.head.val ).to.equal( 2 );
+        expect( reversed.head.next ).to.deep.equal( { val: 1, next: null } );
+      });
+
+      it('should leave the original linked list alone', function() {
+        ll.push( 1 );
+        ll.push( 2 );
+        ll.reverse();
+        expect( ll.head.val ).to.equal( 1 );
+        expect( ll.head.next ).to.deep.equal( { val: 2, next: null } );
+      });
+
+      it('should reverse linked list for three elements', function() {
+        ll.push( 1 );
+        ll.push( 2 );
+        ll.push( 3 );
+        var reversed = ll.reverse();
+        expect( reversed.head.val ).to.equal( 3 );
+        expect( reversed.head.next.val ).to.equal( 2 );
+        expect( reversed.head.next.next ).to.deep.equal( { val: 1, next: null } );
+      });
     });
 
-    it('should do nothing if head is not set', function() {
-      var reversed = ll.reverse();
-      expect( reversed.head ).to.be.null();
-    });
+    describe('inPlace', function() {
+      it('should exist on the prototype chain', function() {
+        expect( ll ).to.respondTo( 'reverseInPlace' );
+      });
 
-    it('should do nothing if head is only node', function() {
-      ll.push( 1 );
-      var reversed = ll.reverse();
-      expect( reversed.head ).to.deep.equal( { val: 1, next: null } );
-    });
+      it('should do nothing if head is not set', function() {
+        ll.reverseInPlace();
+        expect( ll.head ).to.be.null();
+      });
 
-    it('should reverse linked list for two elements', function() {
-      ll.push( 1 );
-      ll.push( 2 );
-      var reversed = ll.reverse();
-      expect( reversed.head.val ).to.equal( 2 );
-      expect( reversed.head.next ).to.deep.equal( { val: 1, next: null } );
-    });
+      it('should do nothing if head is only node', function() {
+        ll.push( 1 );
+        ll.reverseInPlace();
+        expect( ll.head ).to.deep.equal( { val: 1, next: null } );
+      });
 
-    it('should leave the original linked list alone', function() {
-      ll.push( 1 );
-      ll.push( 2 );
-      ll.reverse();
-      expect( ll.head.val ).to.equal( 1 );
-      expect( ll.head.next ).to.deep.equal( { val: 2, next: null } );
-    });
+      it('should reverseInPlace linked list for two elements', function() {
+        ll.push( 1 );
+        ll.push( 2 );
+        ll.reverseInPlace();
+        expect( ll.head.val ).to.equal( 2 );
+        expect( ll.head.next ).to.deep.equal( { val: 1, next: null } );
+      });
 
-    it('should reverse linked list for three elements', function() {
-      ll.push( 1 );
-      ll.push( 2 );
-      ll.push( 3 );
-      var reversed = ll.reverse();
-      expect( reversed.head.val ).to.equal( 3 );
-      expect( reversed.head.next.val ).to.equal( 2 );
-      expect( reversed.head.next.next ).to.deep.equal( { val: 1, next: null } );
+      it('should reverseInPlace linked list for three elements', function() {
+        ll.push( 1 );
+        ll.push( 2 );
+        ll.push( 3 );
+        ll.reverseInPlace();
+        expect( ll.head.val ).to.equal( 3 );
+        expect( ll.head.next.val ).to.equal( 2 );
+        expect( ll.head.next.next ).to.deep.equal( { val: 1, next: null } );
+      });
+
+      it('should reverseInPlace linked list for five elements', function() {
+        ll.push( 1 );
+        ll.push( 2 );
+        ll.push( 3 );
+        ll.push( 4 );
+        ll.push( 5 );
+        ll.reverseInPlace();
+        expect( ll.head.val ).to.equal( 5 );
+        expect( ll.head.next.val ).to.equal( 4 );
+        expect( ll.head.next.next.val ).to.equal( 3 );
+        expect( ll.head.next.next.next.val ).to.equal( 2 );
+        expect( ll.head.next.next.next.next.val ).to.equal( 1 );
+        expect( ll.head.next.next.next.next.next ).to.equal( null );
+      });
     });
   });
 });

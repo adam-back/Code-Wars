@@ -98,3 +98,26 @@ LinkedList.prototype.reverse = function() {
 
   return newList;
 };
+
+LinkedList.prototype.reverseInPlace = function() {
+  if ( !this.head || !this.head.next ) {
+    return this;
+  }
+
+  var current = this.head;
+  var next = this.head.next;
+  // make current head the tail
+  current.next= null;
+  var oldList;
+
+  while( next ) {
+    oldList = next.next;
+    next.next = current; // reverse
+    current = next;
+    next = oldList;
+  }
+
+  this.head = current;
+
+  return this;
+};
